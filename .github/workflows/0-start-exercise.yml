@@ -38,9 +38,31 @@ jobs:
       - name: Pull latest changes
         run: git pull origin main
 
+      - name: Resolve exercise issue number
+        id: resolve-issue
+        run: |
+          ISSUE_NUMBER="${{ needs.start_exercise.outputs['issue-number'] }}"
+
+          if [ -z "$ISSUE_NUMBER" ] || [ "$ISSUE_NUMBER" = "null" ]; then
+            ISSUE_NUMBER=$(gh issue list \
+              --repo "${GITHUB_REPOSITORY}" \
+              --state open \
+              --json number,title,createdAt \
+              --jq 'sort_by(.createdAt) | reverse | map(select(.title | startswith("Exercise:")))[0].number')
+          fi
+
+          if [ -z "$ISSUE_NUMBER" ] || [ "$ISSUE_NUMBER" = "null" ]; then
+            echo "Exercise issue number could not be resolved"
+            exit 1
+          fi
+
+          echo "issue_number=$ISSUE_NUMBER" >> "$GITHUB_OUTPUT"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Write Japanese started README
         env:
-          ISSUE_NUMBER: ${{ needs.start_exercise.outputs.issue-number }}
+          ISSUE_NUMBER: ${{ steps.resolve-issue.outputs.issue_number }}
         run: |
           sed \
             -e "s|__GITHUB_ACTOR__|${GITHUB_ACTOR}|g" \
@@ -59,17 +81,43 @@ jobs:
     name: Localize exercise issue
     runs-on: ubuntu-latest
     needs: [start_exercise]
-    env:
-      ISSUE_NUMBER: ${{ needs.start_exercise.outputs.issue-number }}
 
     steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Resolve exercise issue number
+        id: resolve-issue
+        run: |
+          ISSUE_NUMBER="${{ needs.start_exercise.outputs['issue-number'] }}"
+
+          if [ -z "$ISSUE_NUMBER" ] || [ "$ISSUE_NUMBER" = "null" ]; then
+            ISSUE_NUMBER=$(gh issue list \
+              --repo "${GITHUB_REPOSITORY}" \
+              --state open \
+              --json number,title,createdAt \
+              --jq 'sort_by(.createdAt) | reverse | map(select(.title | startswith("Exercise:")))[0].number')
+          fi
+
+          if [ -z "$ISSUE_NUMBER" ] || [ "$ISSUE_NUMBER" = "null" ]; then
+            echo "Exercise issue number could not be resolved"
+            exit 1
+          fi
+
+          echo "issue_number=$ISSUE_NUMBER" >> "$GITHUB_OUTPUT"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Update issue body in Japanese
         run: |
           sed \
             -e "s|__GITHUB_ACTOR__|${GITHUB_ACTOR}|g" \
             .github/step-feedback/exercise-started-issue.md > ISSUE_BODY.md
 
-          gh issue edit "${ISSUE_NUMBER}" \
+          gh issue edit "${{ steps.resolve-issue.outputs.issue_number }}" \
             --repo "${GITHUB_REPOSITORY}" \
             --title "Exercise: Git 入門" \
             --body-file ISSUE_BODY.md
@@ -108,20 +156,41 @@ jobs:
   post_next_step_content:
     name: Post next step content
     runs-on: ubuntu-latest
-    needs: [start_exercise, localize_exercise_issue]
+    needs: [start_exercise]
     env:
-      ISSUE_NUMBER: ${{ needs.start_exercise.outputs.issue-number }}
       ISSUE_REPOSITORY: ${{ github.repository }}
 
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Resolve exercise issue number
+        id: resolve-issue
+        run: |
+          ISSUE_NUMBER="${{ needs.start_exercise.outputs['issue-number'] }}"
+
+          if [ -z "$ISSUE_NUMBER" ] || [ "$ISSUE_NUMBER" = "null" ]; then
+            ISSUE_NUMBER=$(gh issue list \
+              --repo "${GITHUB_REPOSITORY}" \
+              --state open \
+              --json number,title,createdAt \
+              --jq 'sort_by(.createdAt) | reverse | map(select(.title | startswith("Exercise:")))[0].number')
+          fi
+
+          if [ -z "$ISSUE_NUMBER" ] || [ "$ISSUE_NUMBER" = "null" ]; then
+            echo "Exercise issue number could not be resolved"
+            exit 1
+          fi
+
+          echo "issue_number=$ISSUE_NUMBER" >> "$GITHUB_OUTPUT"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Create comment - add step content
         uses: GrantBirki/comment@v2.1.1
         with:
           repository: ${{ env.ISSUE_REPOSITORY }}
-          issue-number: ${{ env.ISSUE_NUMBER }}
+          issue-number: ${{ steps.resolve-issue.outputs.issue_number }}
           file: ${{ env.STEP_1_FILE }}
           vars: |
             login: ${{ github.actor }}
@@ -131,7 +200,7 @@ jobs:
         uses: GrantBirki/comment@v2.1.1
         with:
           repository: ${{ env.ISSUE_REPOSITORY }}
-          issue-number: ${{ env.ISSUE_NUMBER }}
+          issue-number: ${{ steps.resolve-issue.outputs.issue_number }}
           file: .github/step-feedback/watching-for-progress.md
 
       - name: Enable next step workflow
