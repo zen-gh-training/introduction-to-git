@@ -83,6 +83,12 @@ jobs:
     needs: [start_exercise]
 
     steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
       - name: Resolve exercise issue number
         id: resolve-issue
         run: |
