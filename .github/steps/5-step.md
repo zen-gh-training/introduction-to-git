@@ -163,7 +163,7 @@ gitGraph LR:
 
    ```bash
    git add src/index.js
-   git commit -m "Add new variable for tracking high score"
+   git commit -m "ハイスコア追跡用の変数を追加"
    ```
 
 1. `61行目`に、ローカルストレージからスコアを読み込むコードを追加してコミットします。
@@ -176,7 +176,7 @@ gitGraph LR:
 
    ```bash
    git add src/index.js
-   git commit -m "Add loading of stored high score"
+   git commit -m "保存済みハイスコアの読み込みを追加"
    ```
 
 1. `313行目`の `updateScore` 関数を、最高スコアを追跡するように置き換えてコミットします。
@@ -196,7 +196,7 @@ gitGraph LR:
 
    ```bash
    git add src/index.js
-   git commit -m "Add logic to keep track of highest score"
+   git commit -m "最高スコアを追跡するロジックを追加"
    ```
 
 1. 履歴グラフをもう一度見てみましょう。フィーチャーブランチが `main` ブランチよりも3つ多くのコミットを持ち、現在のバージョンを明確にする `HEAD` がフィーチャーブランチに付いていることに注目してください。
@@ -218,7 +218,7 @@ gitGraph LR:
    > 🪧 **注意:** 学習のために「non fast forward」オプションを使用して、ブランチが履歴に見えるようにします。ビジュアル図がより面白くなります。
 
    ```bash
-   git merge --no-ff fix-incomplete-high-score -m "Fix high score tracker"
+   git merge --no-ff fix-incomplete-high-score -m "ハイスコアトラッカーを修正"
    ```
 
    <img width="500px" src="https://github.com/user-attachments/assets/6ee45d40-e25c-4c03-907c-063d57273a7e"/>
@@ -267,7 +267,7 @@ gitGraph LR:
    コミットメッセージ
 
    ```bash
-   Add element to display current level
+   現在レベル表示の要素を追加
    ```
 
 1. `index.js` を開いてレベルカウンターを追加しましょう。
@@ -282,7 +282,7 @@ gitGraph LR:
    コミットメッセージ
 
    ```bash
-   Add variables for level and clear counter
+   レベルとクリア数の変数を追加
    ```
 
 1. `273行目`の `checkPatternMatch` メソッドを以下に置き換え、変更をコミットします。
@@ -312,7 +312,7 @@ gitGraph LR:
    コミットメッセージ
 
    ```bash
-   Add logic to calculate level
+   レベル計算ロジックを追加
    ```
 
 1. **グラフ** パネルに、新しいコミット、以前のブランチ、そして元のコミットを含む全体の履歴が表示されていることに注目してください。

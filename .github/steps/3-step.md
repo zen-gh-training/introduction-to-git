@@ -20,9 +20,9 @@ config:
   theme: 'forest'
 ---
 gitGraph
-   commit id: "9c6ef8a Initial commit"
-   commit id: "16ac970 Start game documentation"
-   commit id: "762ac02 Start developer docs" tag: "HEAD"
+   commit id: "9c6ef8a 初回コミット"
+   commit id: "16ac970 ゲーム説明を追加"
+   commit id: "762ac02 開発者向けドキュメントを追加" tag: "HEAD"
 ```
 
 ### 重要な Git コマンドは？
@@ -61,7 +61,7 @@ gitGraph
 
    > 🪧 **注意**: 今後のステップで履歴が長くなると、より面白い表示になります。
 
-1. `Initial commit` エントリの **コミット ID** をコピーします。長い形式でも短い形式でも使えます。
+1. `初回コミット` エントリの **コミット ID** をコピーします。長い形式でも短い形式でも使えます。
 
 1. それを使って以前のバージョンをチェックアウトします。
 

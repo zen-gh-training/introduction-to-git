@@ -88,7 +88,7 @@ Git はシンボルと色を使ってファイルの変更を表示します:
 1. 以下のメッセージで変更をコミットします。
 
    ```md
-   git commit -m "Add element for showing high score"
+   git commit -m "ハイスコア表示要素を追加"
    ```
 
    <img width="500px" src="https://github.com/user-attachments/assets/8381b943-ca22-4b22-97b5-4520e174fc4c"/>
@@ -143,7 +143,7 @@ Git はシンボルと色を使ってファイルの変更を表示します:
 1. 以下のメッセージで変更をコミットします。
 
    ```txt
-   Make null pointer pattern easier to complete
+   Null Pointer パターンを簡単に調整
    ```
 
 1. 新しいコミットがリポジトリに追加されたら、Mona がすでにあなたの作業を確認しているはずです。少し待ってコメントを見守ってください。進捗情報と次のステップが表示されます。

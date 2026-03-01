@@ -20,7 +20,7 @@ jobs:
     name: Start Exercise
     uses: skills/exercise-toolkit/.github/workflows/start-exercise.yml@v0.7.0
     with:
-      exercise-title: "Introduction to Git"
+      exercise-title: "Git 入門"
       intro-message: "Use Git version control to work on a game using command line (CLI) and VS Code"
 
   replace_exercise_name:
@@ -64,13 +64,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Get response templates
-        uses: actions/checkout@v4
-        with:
-          repository: skills/exercise-toolkit
-          path: exercise-toolkit
-          ref: v0.7.3
-
       - name: Create comment - add step content
         uses: GrantBirki/comment@v2.1.1
         with:
@@ -86,7 +79,7 @@ jobs:
         with:
           repository: ${{ env.ISSUE_REPOSITORY }}
           issue-number: ${{ env.ISSUE_NUMBER }}
-          file: exercise-toolkit/markdown-templates/step-feedback/watching-for-progress.md
+          file: .github/step-feedback/watching-for-progress.md
 
       - name: Enable next step workflow
         run: |

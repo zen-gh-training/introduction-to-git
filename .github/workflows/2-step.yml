@@ -33,13 +33,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Get response templates
-        uses: actions/checkout@v4
-        with:
-          repository: skills/exercise-toolkit
-          path: exercise-toolkit
-          ref: v0.7.3
-
       - name: Find last comment
         id: find-last-comment
         uses: peter-evans/find-comment@v3
@@ -54,7 +47,7 @@ jobs:
           repository: ${{ env.ISSUE_REPOSITORY }}
           issue-number: ${{ env.ISSUE_NUMBER }}
           comment-id: ${{ steps.find-last-comment.outputs.comment-id }}
-          file: exercise-toolkit/markdown-templates/step-feedback/checking-work.md
+          file: .github/step-feedback/checking-work.md
           edit-mode: replace
 
       # START: Check practical exercise
@@ -65,7 +58,7 @@ jobs:
         uses: actions/github-script@v6
         env:
           commit_messages: ${{ toJson(github.event.client_payload.branch_commit_messages) }}
-          keyword: "initial"
+          keyword: "初回"
         with:
           script: |
             // Load commit messages and keyword
@@ -80,7 +73,7 @@ jobs:
                 return;
               }
             }
-            throw new Error(`No commit message contains the keyword '${keyword}'`);
+            throw new Error(`コミットメッセージにキーワード '${keyword}' が含まれていません。`);
 
       - name: Check for game docs commit
         id: check-for-game-docs-commit
@@ -88,7 +81,7 @@ jobs:
         uses: actions/github-script@v6
         env:
           commit_messages: ${{ toJson(github.event.client_payload.branch_commit_messages) }}
-          keyword: "game"
+          keyword: "ゲーム"
         with:
           script: |
             // Load commit messages and keyword
@@ -103,7 +96,7 @@ jobs:
                 return;
               }
             }
-            throw new Error(`No commit message contains the keyword '${keyword}'`);
+            throw new Error(`コミットメッセージにキーワード '${keyword}' が含まれていません。`);
 
       - name: Check for developer docs commit
         id: check-for-developer-docs-commit
@@ -111,7 +104,7 @@ jobs:
         uses: actions/github-script@v6
         env:
           commit_messages: ${{ toJson(github.event.client_payload.branch_commit_messages) }}
-          keyword: "developer"
+          keyword: "開発者"
         with:
           script: |
             // Load commit messages and keyword
@@ -126,7 +119,7 @@ jobs:
                 return;
               }
             }
-            throw new Error(`No commit message contains the keyword '${keyword}'`);
+            throw new Error(`コミットメッセージにキーワード '${keyword}' が含まれていません。`);
 
       - name: Update comment - step results
         uses: GrantBirki/comment@v2.1.1
@@ -135,16 +128,16 @@ jobs:
           issue-number: ${{ env.ISSUE_NUMBER }}
           comment-id: ${{ steps.find-last-comment.outputs.comment-id }}
           edit-mode: replace
-          file: exercise-toolkit/markdown-templates/step-feedback/step-results-table.md
+          file: .github/step-feedback/step-results-table.md
           vars: |
             step_number: 2
             results_table:
-              - description: "Created initial commit"
+              - description: "初回コミットを作成した"
                 passed: ${{ steps.check-for-initial-commit.outcome == 'success' }}
-              - description: "Created game docs commit"
+              - description: "ゲーム説明のコミットを作成した"
                 passed: ${{ steps.check-for-game-docs-commit.outcome == 'success' }}
-              - description: "Created developer docs commit"
-                passed: ${{ steps.check-for-game-docs-commit.outcome == 'success' }}
+              - description: "開発者向けドキュメントのコミットを作成した"
+                passed: ${{ steps.check-for-developer-docs-commit.outcome == 'success' }}
 
       # END: Check practical exercise
 
@@ -164,19 +157,12 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Get response templates
-        uses: actions/checkout@v4
-        with:
-          repository: skills/exercise-toolkit
-          path: exercise-toolkit
-          ref: v0.7.3
-
       - name: Create comment - step finished
         uses: GrantBirki/comment@v2.1.1
         with:
           repository: ${{ env.ISSUE_REPOSITORY }}
           issue-number: ${{ env.ISSUE_NUMBER }}
-          file: exercise-toolkit/markdown-templates/step-feedback/step-finished-prepare-next-step.md
+          file: .github/step-feedback/step-finished-prepare-next-step.md
           vars: |
             next_step_number: 3
 
@@ -192,7 +178,7 @@ jobs:
         with:
           repository: ${{ env.ISSUE_REPOSITORY }}
           issue-number: ${{ env.ISSUE_NUMBER }}
-          file: exercise-toolkit/markdown-templates/step-feedback/watching-for-progress.md
+          file: .github/step-feedback/watching-for-progress.md
 
       - name: Disable current workflow and enable next one
         run: |
