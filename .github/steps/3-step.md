@@ -1,18 +1,18 @@
-## Step 3: Exploring Git History
+## ステップ 3: Git の履歴を探索する
 
-With our game now tracked in Git, let's learn how to explore what changes were made, when they were made, and by whom.
+ゲームが Git で追跡されるようになったので、どんな変更が行われたか、いつ行われたか、誰が行ったかを確認する方法を学びましょう。
 
-### 📖 Theory: Understanding Git History
+### 📖 理論: Git の履歴を理解する
 
-Git maintains a complete history of your project through commits. Each commit contains:
+Git はコミットを通じてプロジェクトの完全な履歴を保持します。各コミットには以下が含まれます:
 
-- **Unique hash ID**: A unique identifier to easily reference it in the history.
-- **Parent commit**: Reference to the previous commit, creating a chain.
-- **Author information**: Who made the changes.
-- **Timestamp**: When the changes were applied.
-- **Commit message**: Description of the changes included in that commit.
+- **ユニークなハッシュ ID**: 履歴内で簡単に参照するためのユニークな識別子。
+- **親コミット**: 前のコミットへの参照で、チェーンを形成します。
+- **作成者情報**: 誰が変更を行ったか。
+- **タイムスタンプ**: いつ変更が適用されたか。
+- **コミットメッセージ**: そのコミットに含まれる変更の説明。
 
-Additionally, the `HEAD` pointer is a special label that indicates your current position in the project history. Your project probably looks similar to the below diagram.
+さらに、`HEAD` ポインタはプロジェクト履歴内での現在位置を示す特別なラベルです。あなたのプロジェクトは、おそらく以下のような図と似ているでしょう。
 
 ```mermaid
 ---
@@ -25,19 +25,19 @@ gitGraph
    commit id: "762ac02 Start developer docs" tag: "HEAD"
 ```
 
-### What are the important Git commands?
+### 重要な Git コマンドは？
 
-Everyone prefers viewing the history in different ways, and the community has created many options.
-Here are a few of the common commands and options you will often use.
+誰もが異なる方法で履歴を見ることを好み、コミュニティは多くのオプションを作成してきました。
+ここでは、よく使うコマンドとオプションをいくつか紹介します。
 
-- `git log` - Display a detailed history of the project.
-  - `git log --oneline` - Show one commit per line, but with less detail.
-  - `git log --graph` - Show a visual diagram, useful for diverging paths.
-- `git checkout` - Move to a different point in the history (modifies files in your working directory).
+- `git log` - プロジェクトの詳細な履歴を表示する。
+  - `git log --oneline` - 1行に1コミットを表示。詳細は少ないが簡潔。
+  - `git log --graph` - 分岐するパスに便利なビジュアル図を表示する。
+- `git checkout` - 履歴の別の時点に移動する（作業ディレクトリのファイルが変更されます）。
 
-### ⌨️ Activity 1: Explore the history (using the CLI)
+### ⌨️ アクティビティ 1: 履歴を探索する（CLI を使用）
 
-1. Show the detailed commit history.
+1. 詳細なコミット履歴を表示します。
 
    ```bash
    git log
@@ -45,7 +45,7 @@ Here are a few of the common commands and options you will often use.
 
    <img width="500px" src="https://github.com/user-attachments/assets/87e2aa43-7270-4163-a9e6-5ed5f4f1ed63"/>
 
-1. Show one commit per line.
+1. 1行に1コミットで表示します。
 
    ```bash
    git log --oneline
@@ -53,17 +53,17 @@ Here are a few of the common commands and options you will often use.
 
    <img width="500px" src="https://github.com/user-attachments/assets/b49a6352-4233-4903-9254-18eaec569895"/>
 
-1. Show a visual graph of the full commit history.
+1. コミット履歴の完全なビジュアルグラフを表示します。
 
    ```bash
    git log --graph --oneline
    ```
 
-   > 🪧 **Note**: This will look more interesting in a future step when the history is longer.
+   > 🪧 **注意**: 今後のステップで履歴が長くなると、より面白い表示になります。
 
-1. Copy the **Commit ID** of the `Initial commit` entry. Both the long and short form will work.
+1. `Initial commit` エントリの **コミット ID** をコピーします。長い形式でも短い形式でも使えます。
 
-1. Use it to checkout the earlier version.
+1. それを使って以前のバージョンをチェックアウトします。
 
    ```bash
    git checkout <commit id>
@@ -71,11 +71,11 @@ Here are a few of the common commands and options you will often use.
 
    <img width="500px" src="https://github.com/user-attachments/assets/4d0f6660-e689-47a2-874e-c3d71b32975b"/><br/>
 
-   🪧 Notice the `README.md` file was removed.
+   🪧 `README.md` ファイルが削除されたことに注目してください。
    
    <img width="350px" src="https://github.com/user-attachments/assets/65091c64-3bef-47ad-a4ff-82f3260aa903"/>
 
-1. Return to the latest commit on `main`. Notice the `README.md` file has returned. 🧐
+1. `main` の最新コミットに戻ります。`README.md` ファイルが復活したことに注目してください。 🧐
 
    ```bash
    git checkout main
@@ -85,27 +85,27 @@ Here are a few of the common commands and options you will often use.
 
    <img width="350px" src="https://github.com/user-attachments/assets/fd673876-ca3b-4184-9f7f-c4bf3ae388a6"/>
 
-### ⌨️ Activity 2: Explore the history (using VS Code)
+### ⌨️ アクティビティ 2: 履歴を探索する（VS Code を使用）
 
-1. In the left navigation, open the **Source Control** tab.
+1. 左のナビゲーションで **ソース管理** タブを開きます。
 
-1. Right-click on the **Changes** header and enable the **Graph** option.
+1. **変更** ヘッダーを右クリックして **グラフ** オプションを有効にします。
 
    <img width="350px" src="https://github.com/user-attachments/assets/c5bfb32d-198a-4baa-9ae5-156ee283256c"/>
 
-1. Inspect the **Graph** panel. Notice the timeline list of your recent commits.
+1. **グラフ** パネルを確認します。最近のコミットのタイムラインリストが表示されていることに注目してください。
 
    <img width="350px" src="https://github.com/user-attachments/assets/860f780f-98ca-4c0e-bb0f-e7d65fb84a67"/><br/>
 
-1. Click the commit names to expand a list of the files modified by that commit.
+1. コミット名をクリックして、そのコミットで変更されたファイルのリストを展開します。
 
    <img width="350px" src="https://github.com/user-attachments/assets/42310a18-84a4-4dca-8f45-18d589e187c0"/>
 
-1. With your exploration of the Git history finished, Mona should already be busy checking your work. Give her a moment and keep watch in the comments. You will see her respond with progress info and the next steps.
+1. Git 履歴の探索が終わったら、Mona がすでにあなたの作業を確認しているはずです。少し待ってコメントを見守ってください。進捗情報と次のステップが表示されます。
 
 <details>
-<summary>Having trouble? 🤷</summary><br/>
+<summary>お困りですか？ 🤷</summary><br/>
 
-- Use `git log --help` to see all available options for viewing history.
+- 履歴表示の利用可能なオプションをすべて見るには `git log --help` を使用してください。
 
 </details>

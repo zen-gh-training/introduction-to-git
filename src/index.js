@@ -1,37 +1,37 @@
-// Game constants
+// ゲーム定数
 const COLS = 10;
 const ROWS = 20;
 const BLOCK_SIZE = 30;
 const PATTERN_SIZE = 5;
 
-// Colors for blocks (dev-themed)
+// ブロックの色（開発者テーマ）
 const COLORS = {
-  0: "#252526", // Empty
-  1: "#f48771", // Bug red
-  2: "#4ec9b0", // Function cyan
-  3: "#ce9178", // String orange
-  4: "#c586c0", // Class purple
-  5: "#dcdcaa", // Variable yellow
-  6: "#569cd6", // Keyword blue
-  7: "#b5cea8", // Number green
-  8: "#000000", // Void (black)
+  0: "#252526", // 空
+  1: "#f48771", // バグ赤
+  2: "#4ec9b0", // 関数シアン
+  3: "#ce9178", // 文字列オレンジ
+  4: "#c586c0", // クラスパープル
+  5: "#dcdcaa", // 変数イエロー
+  6: "#569cd6", // キーワードブルー
+  7: "#b5cea8", // 数値グリーン
+  8: "#000000", // ボイド（黒）
 };
 
-// Tetromino shapes (simplified for easier pattern matching)
+// テトロミノの形状（パターンマッチしやすいよう簡略化）
 const SHAPES = [
-  [[1]], // Single block
-  [[2, 2]], // Horizontal pair
-  [[3], [3]], // Vertical pair
+  [[1]], // 単一ブロック
+  [[2, 2]], // 横並びペア
+  [[3], [3]], // 縦並びペア
   [
     [4, 4],
     [4, 4],
-  ], // 2x2 square
-  [[5, 5, 5]], // Horizontal line of 3
-  [[8]], // Void block (black)
-  [[8, 8]], // Void pair
+  ], // 2x2 四角
+  [[5, 5, 5]], // 横3連ライン
+  [[8]], // ボイドブロック（黒）
+  [[8, 8]], // ボイドペア
 ];
 
-// Game state
+// ゲームの状態
 let canvas, ctx, patternCanvas, patternCtx;
 let board = [];
 let currentPiece = null;
@@ -45,32 +45,32 @@ let dropInterval = 1000;
 let lastTime = 0;
 let targetPattern = null;
 
-// Initialize game
+// ゲームの初期化
 function init() {
   canvas = document.getElementById("gameCanvas");
   ctx = canvas.getContext("2d");
   patternCanvas = document.getElementById("patternCanvas");
   patternCtx = patternCanvas.getContext("2d");
 
-  // Initialize empty board
+  // 空のボードを初期化
   board = Array(ROWS)
     .fill(null)
     .map(() => Array(COLS).fill(0));
 
-  // Set initial target pattern
+  // 初期ターゲットパターンを設定
   setNewTargetPattern();
 
-  // Spawn first piece
+  // 最初のピースを生成
   spawnPiece();
 
-  // Start game loop
+  // ゲームループを開始
   requestAnimationFrame(gameLoop);
 
-  // Add keyboard controls
+  // キーボード操作を追加
   document.addEventListener("keydown", handleKeyPress);
 }
 
-// Game loop
+// ゲームループ
 function gameLoop(time = 0) {
   if (!gameOver && !isPaused) {
     const deltaTime = time - lastTime;
@@ -87,13 +87,13 @@ function gameLoop(time = 0) {
   requestAnimationFrame(gameLoop);
 }
 
-// Draw everything
+// 全体を描画
 function draw() {
-  // Clear canvas
+  // キャンバスをクリア
   ctx.fillStyle = COLORS[0];
   ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-  // Draw board
+  // ボードを描画
   for (let row = 0; row < ROWS; row++) {
     for (let col = 0; col < COLS; col++) {
       if (board[row][col]) {
@@ -102,12 +102,12 @@ function draw() {
     }
   }
 
-  // Draw current piece
+  // 現在のピースを描画
   if (currentPiece) {
     drawPiece(ctx, currentPiece, currentX, currentY);
   }
 
-  // Draw grid
+  // グリッドを描画
   ctx.strokeStyle = "#3e3e42";
   ctx.lineWidth = 0.5;
   for (let row = 0; row <= ROWS; row++) {
@@ -124,7 +124,7 @@ function draw() {
   }
 }
 
-// Draw a single block
+// 単一ブロックを描画
 function drawBlock(context, x, y, colorCode) {
   context.fillStyle = COLORS[colorCode];
   context.fillRect(x * BLOCK_SIZE, y * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE);
@@ -132,7 +132,7 @@ function drawBlock(context, x, y, colorCode) {
   context.strokeRect(x * BLOCK_SIZE, y * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE);
 }
 
-// Draw current piece
+// 現在のピースを描画
 function drawPiece(context, piece, offsetX, offsetY) {
   for (let row = 0; row < piece.length; row++) {
     for (let col = 0; col < piece[row].length; col++) {
@@ -143,7 +143,7 @@ function drawPiece(context, piece, offsetX, offsetY) {
   }
 }
 
-// Spawn new piece
+// 新しいピースを生成
 function spawnPiece() {
   const randomShape = SHAPES[Math.floor(Math.random() * SHAPES.length)];
   currentPiece = randomShape.map((row) => [...row]);
@@ -155,7 +155,7 @@ function spawnPiece() {
   }
 }
 
-// Check collision
+// 衝突判定
 function checkCollision(piece, x, y) {
   for (let row = 0; row < piece.length; row++) {
     for (let col = 0; col < piece[row].length; col++) {
@@ -176,7 +176,7 @@ function checkCollision(piece, x, y) {
   return false;
 }
 
-// Move piece down
+// ピースを下に移動
 function moveDown() {
   if (!checkCollision(currentPiece, currentX, currentY + 1)) {
     currentY++;
@@ -187,7 +187,7 @@ function moveDown() {
   }
 }
 
-// Lock piece to board
+// ピースをボードに固定
 function lockPiece() {
   for (let row = 0; row < currentPiece.length; row++) {
     for (let col = 0; col < currentPiece[row].length; col++) {
@@ -202,7 +202,7 @@ function lockPiece() {
   }
 }
 
-// Rotate piece
+// ピースを回転
 function rotate() {
   const rotated = currentPiece[0].map((_, i) => currentPiece.map((row) => row[i]).reverse());
 
@@ -211,21 +211,21 @@ function rotate() {
   }
 }
 
-// Move left
+// 左に移動
 function moveLeft() {
   if (!checkCollision(currentPiece, currentX - 1, currentY)) {
     currentX--;
   }
 }
 
-// Move right
+// 右に移動
 function moveRight() {
   if (!checkCollision(currentPiece, currentX + 1, currentY)) {
     currentX++;
   }
 }
 
-// Hard drop
+// ハードドロップ
 function hardDrop() {
   while (!checkCollision(currentPiece, currentX, currentY + 1)) {
     currentY++;
@@ -235,14 +235,14 @@ function hardDrop() {
   spawnPiece();
 }
 
-// Set new target pattern
+// 新しいターゲットパターンを設定
 function setNewTargetPattern() {
   targetPattern = ERROR_PATTERNS[Math.floor(Math.random() * ERROR_PATTERNS.length)];
   drawTargetPattern();
   document.getElementById("patternName").textContent = targetPattern.name;
 }
 
-// Draw target pattern
+// ターゲットパターンを描画
 function drawTargetPattern() {
   if (!targetPattern) return;
 
@@ -262,7 +262,7 @@ function drawTargetPattern() {
   }
 }
 
-// Check for pattern match
+// パターンマッチを確認
 function checkPatternMatch() {
   for (let startRow = 0; startRow <= ROWS - PATTERN_SIZE; startRow++) {
     for (let startCol = 0; startCol <= COLS - PATTERN_SIZE; startCol++) {
@@ -277,12 +277,12 @@ function checkPatternMatch() {
   }
 }
 
-// Check if pattern matches at position
+// 指定位置でパターンが一致するか確認
 function matchesPattern(startRow, startCol) {
   for (let row = 0; row < PATTERN_SIZE; row++) {
     for (let col = 0; col < PATTERN_SIZE; col++) {
       const cellValue = board[startRow + row][startCol + col];
-      // Void blocks (8) count as empty for pattern matching
+      // ボイドブロック（8）はパターンマッチでは空として扱う
       const hasBlock = cellValue !== 0 && cellValue !== 8;
       const needsBlock = targetPattern.pattern[row][col] === 1;
 
@@ -294,9 +294,9 @@ function matchesPattern(startRow, startCol) {
   return true;
 }
 
-// Clear matched pattern
+// マッチしたパターンをクリア
 function clearPattern(startRow, startCol) {
-  // Clear all blocks on the board
+  // ボード上の全ブロックをクリア
   for (let row = 0; row < ROWS; row++) {
     for (let col = 0; col < COLS; col++) {
       board[row][col] = 0;
@@ -304,12 +304,12 @@ function clearPattern(startRow, startCol) {
   }
 }
 
-// Update score display
+// スコア表示を更新
 function updateScore() {
   document.getElementById("score").textContent = score;
 }
 
-// Handle keyboard input
+// キーボード入力を処理
 function handleKeyPress(e) {
   if (gameOver) return;
 
@@ -342,18 +342,18 @@ function handleKeyPress(e) {
   }
 }
 
-// Toggle pause
+// 一時停止を切り替え
 function togglePause() {
   isPaused = !isPaused;
-  document.getElementById("status").textContent = isPaused ? "Paused" : "Playing...";
+  document.getElementById("status").textContent = isPaused ? "一時停止" : "プレイ中...";
 }
 
-// End game
+// ゲーム終了
 function endGame() {
   gameOver = true;
   document.getElementById("finalScore").textContent = score;
   document.getElementById("gameOver").classList.add("show");
 }
 
-// Start the game when page loads
+// ページ読み込み時にゲームを開始
 window.addEventListener("load", init);

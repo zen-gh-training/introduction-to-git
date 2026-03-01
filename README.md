@@ -1,52 +1,52 @@
-# Introduction to Git
+# Git 入門
 
-_Use Git version control to work on a game using command line (CLI) and VS Code._
+_コマンドライン（CLI）と VS Code を使って、ゲームを題材に Git バージョン管理を学びましょう。_
 
-## Welcome
+## ようこそ
 
-- **Who is this for**: Beginner developers who want to learn Git version control
-- **What you'll learn**: Fundamental Git concepts including commits, branches, history, and collaboration basics
-- **What you'll build**: You'll create a Git repository, add a sample code, then develop some simple features.
-- **Prerequisites**:
+- **対象者**: Git バージョン管理を学びたい初心者の開発者
+- **学べること**: コミット、ブランチ、履歴、コラボレーションの基本など、Git の基礎概念
+- **作るもの**: Git リポジトリを作成し、サンプルコードを追加して、簡単な機能を開発します。
+- **前提条件**:
 
-  - No prior Git or version control experience required.
-  - Recommended: Basic familiarity with Command Line Interfaces (CLI)
-  - Recommended: Basic familiarity with Visual Studio Code.
+  - Git やバージョン管理の事前知識は不要です。
+  - 推奨: コマンドラインインターフェース（CLI）の基本的な知識
+  - 推奨: Visual Studio Code の基本的な知識
 
-- **How long**: This exercise takes less than 60 minutes to complete.
+- **所要時間**: この演習は60分以内で完了できます。
 
-In this exercise, you will:
+### 演習の概要
 
-1. Understand what version control is and why developers use it.
-1. Configure your Git identity.
-1. Create your first repository and make commits.
-1. View project history and compare file changes.
-1. Work with branches to experiment safely.
-1. Learn about Git collaboration concepts.
+1. バージョン管理とは何か、なぜ開発者が使うのかを理解する。
+1. Git のユーザー情報を設定する。
+1. 最初のリポジトリを作成してコミットする。
+1. プロジェクトの履歴を確認し、ファイルの変更を比較する。
+1. ブランチを使って安全に実験する。
+1. Git のコラボレーション概念について学ぶ。
 
-### How to start this exercise
+### 演習の始め方
 
-Simply copy the exercise to your account, then give your favorite Octocat (Mona) **about 20 seconds** to prepare the first lesson, then **refresh the page**.
+下の「演習をコピー」ボタンをクリックして、このリポジトリを自分のアカウントにコピーし、Octocat（Mona）が最初のレッスンを準備するまで**約20秒**待ってから、**ページを更新**してください。
 
-[![](https://img.shields.io/badge/Copy%20Exercise-%E2%86%92-1f883d?style=for-the-badge&logo=github&labelColor=197935)](https://github.com/new?template_owner=skills&template_name=introduction-to-git&owner=%40me&name=skills-introduction-to-git&description=Exercise:+Introduction+to+Git&visibility=public)
+[![](https://img.shields.io/badge/%E6%BC%94%E7%BF%92%E3%82%92%E3%82%B3%E3%83%94%E3%83%BC-%E2%86%92-1f883d?style=for-the-badge&logo=github&labelColor=197935)](https://github.com/new?template_owner=skills&template_name=introduction-to-git&owner=%40me&name=skills-introduction-to-git&description=Exercise:+Introduction+to+Git&visibility=public)
 
 <details>
-<summary>Having trouble? 🤷</summary><br/>
+<summary>お困りですか？ 🤷</summary><br/>
 
-When copying the exercise, we recommend the following settings:
+演習をコピーする際は、以下の設定を推奨します:
 
-- For owner, choose your personal account or an organization to host the repository.
+- オーナーには、リポジトリをホストする個人アカウントまたは組織を選択してください。
 
-- We recommend creating a public repository, since private repositories will use Actions minutes.
+- プライベートリポジトリは Actions の使用時間を消費するため、パブリックリポジトリの作成を推奨します。
 
-If the exercise isn't ready in 20 seconds, please check the [Actions](../../actions) tab.
+20秒経っても演習の準備ができない場合は、[Actions](../../actions) タブを確認してください。
 
-- Check to see if a job is running. Sometimes it simply takes a bit longer.
+- ジョブが実行中かどうか確認してください。単に時間がかかっている場合があります。
 
-- If the page shows a failed job, please submit an issue. Nice, you found a bug! 🐛
+- ジョブが失敗と表示された場合はバグなので、本リポジトリに Issue を作成して報告してください🐛
 
 </details>
 
 ---
 
-&copy; 2025 GitHub &bull; [Code of Conduct](https://www.contributor-covenant.org/version/2/1/code_of_conduct/code_of_conduct.md) &bull; [MIT License](https://gh.io/mit)
+&copy; 2025 GitHub &bull; [行動規範](https://www.contributor-covenant.org/version/2/1/code_of_conduct/code_of_conduct.md) &bull; [MIT ライセンス](https://gh.io/mit)

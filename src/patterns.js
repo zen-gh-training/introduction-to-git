@@ -1,4 +1,4 @@
-// Coding error patterns (5x5)
+// コーディングエラーパターン（5x5）
 const ERROR_PATTERNS = [
   {
     name: "Null Pointer",
@@ -11,7 +11,7 @@ const ERROR_PATTERNS = [
     ],
   },
   {
-    name: "Memory Leak",
+    name: "メモリリーク",
     pattern: [
       [0, 1, 1, 1, 0],
       [1, 0, 0, 0, 1],
@@ -31,7 +31,7 @@ const ERROR_PATTERNS = [
     ],
   },
   {
-    name: "Race Condition",
+    name: "競合状態",
     pattern: [
       [1, 1, 1, 1, 0],
       [1, 0, 0, 0, 1],
@@ -41,7 +41,7 @@ const ERROR_PATTERNS = [
     ],
   },
   {
-    name: "Infinite Loop",
+    name: "無限ループ",
     pattern: [
       [0, 1, 1, 1, 0],
       [1, 0, 0, 0, 1],
@@ -51,7 +51,7 @@ const ERROR_PATTERNS = [
     ],
   },
   {
-    name: "Syntax Error",
+    name: "構文エラー",
     pattern: [
       [1, 1, 1, 1, 1],
       [0, 0, 1, 0, 0],
@@ -61,7 +61,7 @@ const ERROR_PATTERNS = [
     ],
   },
   {
-    name: "Type Mismatch",
+    name: "型不一致",
     pattern: [
       [1, 0, 0, 0, 1],
       [0, 1, 0, 1, 0],

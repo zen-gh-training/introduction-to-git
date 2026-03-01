@@ -1,33 +1,33 @@
-## Step 6: Introduction to Collaboration
+## ステップ 6: コラボレーション入門
 
-Nice work! You've mastered local Git operations and our game is now safe to experiment developing new features! 🎉
+お疲れさまです！ローカルの Git 操作をマスターし、ゲームは安全に新機能の開発を実験できるようになりました！ 🎉
 
-But.. the really fun development happens in teams, not alone. That is another exercise, but let's start exploring the topic.
+しかし... 本当に楽しい開発はチームで行われます。それは別の演習ですが、まずはトピックを探ってみましょう。
 
-### 📖 Theory: Git Collaboration Concepts
+### 📖 理論: Git のコラボレーション概念
 
-Since branches provide powerful parallelism to work on different features independently, a natural extension is to enable multiple people to work in parallel.
+ブランチは異なる機能を独立して作業するための強力な並列性を提供するため、自然な拡張として複数人が並行して作業できるようにすることがあります。
 
-At the beginning, we mentioned Git is a "distributed" version control system, this means it can share changes with other copies of the same repository!
+最初に述べたように、Git は「分散型」バージョン管理システムです。つまり、同じリポジトリの他のコピーと変更を共有できるのです！
 
-### What does collaboration look like?
+### コラボレーションはどのようになる？
 
-Here is a typical workflow:
+典型的なワークフローはこちらです:
 
-1. Copy a repository to your local machine (called **cloning**).
-1. Create branches and develop new features.
-1. Publish your changes to a remote repository, somewhere others can also access (called **pushing**).
-1. Other developers decide if they like your changes. If so, they merge them into their version of the project (called **pulling**).
-1. Additionally, you might proactively ask another developer to integrate your changes into their copy (called a **pull request**).
+1. リポジトリをローカルマシンにコピーする（**クローン** と呼ばれます）。
+1. ブランチを作成して新機能を開発する。
+1. 他の人もアクセスできる場所にあるリモートリポジトリに変更を公開する（**プッシュ** と呼ばれます）。
+1. 他の開発者があなたの変更を気に入ったかどうか判断する。もしそうなら、自分のバージョンのプロジェクトにマージする（**プル** と呼ばれます）。
+1. さらに、他の開発者に自分の変更を統合してもらうよう積極的に依頼することもできます（**プルリクエスト** と呼ばれます）。
 
-### ⌨️ Activity: Quick Review
+### ⌨️ アクティビティ: 簡単なレビュー
 
-Answer one quick question for Mona, and she will share the final review! 🎉
+Mona に一つ質問に答えてください。最終レビューを共有してくれます！ 🎉
 
-**What is your favorite feature of Git?**
+**Git のお気に入りの機能は何ですか？**
 
-- [ ] It's free and open source. 😍
-- [ ] I don't need internet to use it. 🛜
-- [ ] I can use it with any operating system. 🍎🪟🐧
-- [ ] The detailed history (if I write good messages). ✨
-- [ ] That I might never write `final_really.zip` ever again! 😎
+- [ ] 無料でオープンソースであること。 😍
+- [ ] インターネットがなくても使えること。 🛜
+- [ ] どのオペレーティングシステムでも使えること。 🍎🪟🐧
+- [ ] 詳細な履歴（良いメッセージを書けば）。 ✨
+- [ ] `final_really.zip` を二度と書かなくて済むかもしれないこと！ 😎

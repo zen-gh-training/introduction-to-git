@@ -1,29 +1,29 @@
-## Review
+## レビュー
 
-_Congratulations, you've completed this exercise and learned the fundamental concepts of Git version control!_
+_おめでとうございます！この演習を完了し、Git バージョン管理の基本概念を学びました！_
 
 <img src="https://octodex.github.com/images/jetpacktocat.png" alt="celebrate" width=200 align=right>
 
-In this exercise, you learned the fundamental concepts of Git version control and gained hands-on experience with essential Git operations. You now understand how to track changes, work with branches, and prepare for collaborative development.
+この演習では、Git バージョン管理の基本概念を学び、必須の Git 操作を実践的に体験しました。変更の追跡方法、ブランチの使い方、共同開発の準備について理解できたはずです。
 
-Here's a recap of your accomplishments:
+達成したことの振り返り:
 
-- Configured Git and understood version control principles
-- Created repositories, staged changes, and made commits
-- Explored project history and compared file changes
-- Worked with branches for safe experimentation
-- Learned collaboration concepts and Git hosting services
+- Git を設定し、バージョン管理の原則を理解した
+- リポジトリを作成し、変更をステージングし、コミットを行った
+- プロジェクトの履歴を探索し、ファイルの変更を比較した
+- 安全に実験するためにブランチを活用した
+- コラボレーションの概念と Git ホスティングサービスについて学んだ
 
-### What's next?
+### 次のステップ
 
-Want to keep going? Try one of these other exercises! :octocat:
+続けてみませんか？以下の演習もお試しください！ :octocat:
 
 [![Skills](https://img.shields.io/badge/Skills-Review_Pull_Requests_→-text?style=flat&logo=github&labelColor=1f2328&color=1f883d)](https://github.com/skills/review-pull-requests)
 
 [![Skills](https://img.shields.io/badge/Skills-Resolve_Merge_Conflicts_→-text?style=flat&logo=github&labelColor=1f2328&color=1f883d)](https://github.com/skills/resolve-merge-conflicts)
 
 
-### Other Resources
+### その他のリソース
 
-- [Git Handbook](https://guides.github.com/introduction/git-handbook/) - Additional Git concepts and commands
-- [Git Documentation](https://git-scm.com/doc) - Complete Git reference and tutorials
+- [Git ハンドブック](https://guides.github.com/introduction/git-handbook/) - Git の追加概念とコマンド
+- [Git ドキュメント](https://git-scm.com/doc) - Git の完全なリファレンスとチュートリアル

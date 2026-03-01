@@ -1,46 +1,46 @@
-## Step 4: Comparing Changes
+## ステップ 4: 変更の比較
 
-Now that we understand how to "undo", let's make some real game changes! And more importantly, learn how Git can show us what was changed **before** we commit it to the repository history.
+「元に戻す」方法を理解したところで、実際にゲームを変更しましょう！そしてさらに重要なことに、リポジトリ履歴にコミットする**前に**、Git が何が変更されたかを示す方法を学びましょう。
 
-Understanding file differences is crucial for reviewing your work and catching errors!
+ファイルの差分を理解することは、作業のレビューやエラーの発見に不可欠です！
 
-### 📖 Theory: Understanding Diffs
+### 📖 理論: 差分（Diff）を理解する
 
-Git uses symbols and coloring to show file changes:
+Git はシンボルと色を使ってファイルの変更を表示します:
 
-- `+` in green indicates lines that were added
-- `-` in red indicates lines that were removed
+- `+`（緑色）は追加された行を示します
+- `-`（赤色）は削除された行を示します
 
-Example:
+例:
 
 ```diff
-+ This is a line that was added
-- This is a line that was removed
++ これは追加された行です
+- これは削除された行です
 ```
 
 > [!TIP]
-> You can change Git's default comparison colors with the below commands.
+> 以下のコマンドで Git のデフォルトの比較色を変更できます。
 >
 > ```bash
 > git config --global color.diff.old yellow
 > git config --global color.diff.new blue
 > ```
 
-### What are the important Git commands?
+### 重要な Git コマンドは？
 
-The `git diff` command shows differences between development states.
+`git diff` コマンドは開発状態間の差分を表示します。
 
-- `git diff` - Differences between the working directory and the staging area.
-- `git diff --staged` - Differences between staging area and previous commit.
-- `git diff HEAD~1` - Differences between current commit and previous commit.
+- `git diff` - 作業ディレクトリとステージングエリア間の差分。
+- `git diff --staged` - ステージングエリアと前のコミット間の差分。
+- `git diff HEAD~1` - 現在のコミットと前のコミット間の差分。
 
-### ⌨️ Activity 1: View differences (using the CLI)
+### ⌨️ アクティビティ 1: 差分を表示する（CLI を使用）
 
-Let's make some changes to the game then use the CLI to show the differences.
+ゲームにいくつか変更を加えてから、CLI を使って差分を表示しましょう。
 
-1. Open `src/index.html`.
+1. `src/index.html` を開きます。
 
-1. At `line 20`, replace the `info-section` area about scoring with the below example.
+1. `20行目`で、スコアに関する `info-section` エリアを以下の例に置き換えます。
 
    ```txt
    <div class="info-section">
@@ -51,13 +51,13 @@ Let's make some changes to the game then use the CLI to show the differences.
    </div>
    ```
 
-   This will demonstrate 3 kinds of changes:
+   これにより3種類の変更がデモされます:
 
-   - Modify the `Score` label to `Current Score`
-   - Add the `High Score` information.
-   - Remove the `status` information.
+   - `Score` ラベルを `Current Score` に変更
+   - `High Score` 情報を追加
+   - `status` 情報を削除
 
-1. View the difference between your working directory and the last commit.
+1. 作業ディレクトリと最後のコミットの差分を表示します。
 
    ```bash
    git diff src/index.html
@@ -65,19 +65,19 @@ Let's make some changes to the game then use the CLI to show the differences.
 
    <img width="500px" src="https://github.com/user-attachments/assets/f41d6917-1651-4549-bb7b-5441a1832e38"/>
 
-1. Promote the changes into the staging area.
+1. 変更をステージングエリアに追加します。
 
    ```bash
    git add src/index.html
    ```
 
-1. Run the same comparison again. Notice that no changes are displayed, because the working directory now matches the staging area.
+1. 同じ比較をもう一度実行します。作業ディレクトリがステージングエリアと一致しているため、変更が表示されないことに注目してください。
 
    ```bash
    git diff src/index.html
    ```
 
-1. View the differences between the staging area and the last commit.
+1. ステージングエリアと最後のコミットの差分を表示します。
 
    ```bash
    git diff --staged src/index.html
@@ -85,7 +85,7 @@ Let's make some changes to the game then use the CLI to show the differences.
 
    <img width="500px" src="https://github.com/user-attachments/assets/f6aad38c-56fa-49ed-8209-9fe249c209ff"/>
 
-1. Commit the changes with the following message.
+1. 以下のメッセージで変更をコミットします。
 
    ```md
    git commit -m "Add element for showing high score"
@@ -93,13 +93,13 @@ Let's make some changes to the game then use the CLI to show the differences.
 
    <img width="500px" src="https://github.com/user-attachments/assets/8381b943-ca22-4b22-97b5-4520e174fc4c"/>
 
-### ⌨️ Activity 2: View differences (using VS Code)
+### ⌨️ アクティビティ 2: 差分を表示する（VS Code を使用）
 
-Let's make some more changes to the game then use the VS Code to show the differences.
+ゲームにさらに変更を加えてから、VS Code を使って差分を表示しましょう。
 
-1. Open `src/patterns.js`.
+1. `src/patterns.js` を開きます。
 
-1. At `line 3`, replace the `Null Pointer` area with the below example to change the pattern.
+1. `3行目`で、`Null Pointer` エリアを以下の例に置き換えてパターンを変更します。
 
    ```txt
    {
@@ -114,43 +114,43 @@ Let's make some more changes to the game then use the VS Code to show the differ
    },
    ```
 
-1. In the **File Explorer**, notice the file name `patterns.js` changed color and now has an `M` indicating it is modified.
+1. **ファイルエクスプローラー** で、ファイル名 `patterns.js` の色が変わり、変更されていることを示す `M` が表示されていることに注目してください。
 
    <img width="350px" src="https://github.com/user-attachments/assets/93a8f34c-9b16-4783-bc46-81532cdeffdf"/>
 
-1. Open the **Source Control** tab. In the **Changes** list, double-click the `patterns.js` file to open the Diff (comparison) view.
+1. **ソース管理** タブを開きます。**変更** リストで `patterns.js` ファイルをダブルクリックして、差分（比較）ビューを開きます。
 
    <img width="350px" src="https://github.com/user-attachments/assets/4dce9e42-caca-4c6e-a6fe-8d83d58cd06d"/><br/>
 
    <img width="500px" src="https://github.com/user-attachments/assets/4c410689-2a53-462f-9200-79d21bddbf2c"/>
 
-   > 💡 **Tip**: You can modify the content in the comparison view for live feedback!
+   > 💡 **ヒント**: 比較ビューでリアルタイムにフィードバックを見ながら内容を編集できます！
 
-1. Promote the the file to the **staging** area. ⚠️ Don't commit yet!
+1. ファイルを**ステージング**エリアに追加します。⚠️ まだコミットしないでください！
 
-   Notice the comparison view stopped showing changes since the current file matches the staging area.
+   現在のファイルがステージングエリアと一致しているため、比較ビューが変更を表示しなくなったことに注目してください。
 
    <img width="500px" src="https://github.com/user-attachments/assets/b1274ece-2b03-42d2-88e8-9f3aaaa8f2c5"/>
 
-1. In the **Staged Changes** list, double-click the `patterns.js` file to open the Diff (comparison) view.
+1. **ステージされた変更** リストで `patterns.js` ファイルをダブルクリックして、差分（比較）ビューを開きます。
 
-   Notice that you can't make changes now. The staging area is locked in preparation for committing.
+   コミットの準備のためにステージングエリアがロックされているので、ここでは変更できないことに注目してください。
 
    <img width="350px" src="https://github.com/user-attachments/assets/da306727-49f1-4f73-9f38-3a0e5d406cef"/><br/>
 
    <img width="500px" src="https://github.com/user-attachments/assets/de1448eb-d0dd-4ec5-89a2-74fb4aa1cf5f"/>
 
-1. Commit the change with the following message.
+1. 以下のメッセージで変更をコミットします。
 
    ```txt
    Make null pointer pattern easier to complete
    ```
 
-1. With your new commits added to the repository, Mona should already be busy checking your work. Give her a moment and keep watch in the comments. You will see her respond with progress info and the next steps.
+1. 新しいコミットがリポジトリに追加されたら、Mona がすでにあなたの作業を確認しているはずです。少し待ってコメントを見守ってください。進捗情報と次のステップが表示されます。
 
 <details>
-<summary>Having trouble? 🤷</summary><br/>
+<summary>お困りですか？ 🤷</summary><br/>
 
-- If the list of change is longer than one screen, you can press `q` to exit the scrolling file viewer.
+- 変更の一覧が1画面より長い場合は、`q` を押してスクロールファイルビューアを終了できます。
 
 </details>
