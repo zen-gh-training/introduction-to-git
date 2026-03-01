@@ -28,7 +28,7 @@ _コマンドライン（CLI）と VS Code を使って、ゲームを題材に 
 
 下の「演習をコピー」ボタンをクリックして、このリポジトリを自分のアカウントにコピーし、Octocat（Mona）が最初のレッスンを準備するまで**約20秒**待ってから、**ページを更新**してください。
 
-[![](https://img.shields.io/badge/%E6%BC%94%E7%BF%92%E3%82%92%E3%82%B3%E3%83%94%E3%83%BC-%E2%86%92-1f883d?style=for-the-badge&logo=github&labelColor=197935)](https://github.com/new?template_owner=zen-gh-training&template_name=introduction-to-git&owner=%40me&name=zen-introduction-to-git&description=%E6%BC%94%E7%BF%92:+Git+%E5%85%A5%E9%96%80&visibility=public)
+[![](https://img.shields.io/badge/%E6%BC%94%E7%BF%92%E3%82%92%E3%82%B3%E3%83%94%E3%83%BC-%E2%86%92-1f883d?style=for-the-badge&logo=github&labelColor=197935)](https://github.com/new?template_owner=zen-gh-training&template_name=introduction-to-git&owner=%40me&name=introduction-to-git&description=%E6%BC%94%E7%BF%92:+Git+%E5%85%A5%E9%96%80&visibility=public)
 
 <details>
 <summary>お困りですか？ 🤷</summary><br/>

@@ -21,12 +21,65 @@ jobs:
     uses: skills/exercise-toolkit/.github/workflows/start-exercise.yml@v0.7.0
     with:
       exercise-title: "Git 入門"
-      intro-message: "Use Git version control to work on a game using command line (CLI) and VS Code"
+      intro-message: "CLI と VS Code を使って、ゲームを題材に Git バージョン管理を学びましょう。"
+
+  localize_started_readme:
+    name: Localize started README
+    runs-on: ubuntu-latest
+    needs: [start_exercise]
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Pull latest changes
+        run: git pull origin main
+
+      - name: Write Japanese started README
+        env:
+          ISSUE_NUMBER: ${{ needs.start_exercise.outputs.issue-number }}
+        run: |
+          sed \
+            -e "s|__GITHUB_ACTOR__|${GITHUB_ACTOR}|g" \
+            -e "s|__GITHUB_REPOSITORY__|${GITHUB_REPOSITORY}|g" \
+            -e "s|__ISSUE_NUMBER__|${ISSUE_NUMBER}|g" \
+            .github/step-feedback/exercise-started-readme.md > README.md
+
+      - name: Commit localized README
+        uses: EndBug/add-and-commit@v9
+        with:
+          add: "README.md"
+          message: "README を日本語化"
+          default_author: github_actions
+
+  localize_exercise_issue:
+    name: Localize exercise issue
+    runs-on: ubuntu-latest
+    needs: [start_exercise]
+    env:
+      ISSUE_NUMBER: ${{ needs.start_exercise.outputs.issue-number }}
+
+    steps:
+      - name: Update issue body in Japanese
+        run: |
+          sed \
+            -e "s|__GITHUB_ACTOR__|${GITHUB_ACTOR}|g" \
+            .github/step-feedback/exercise-started-issue.md > ISSUE_BODY.md
+
+          gh issue edit "${ISSUE_NUMBER}" \
+            --repo "${GITHUB_REPOSITORY}" \
+            --title "Exercise: Git 入門" \
+            --body-file ISSUE_BODY.md
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   replace_exercise_name:
     name: Replace exercise name in .devcontainer.json
     runs-on: ubuntu-latest
-    needs: [start_exercise]
+    needs: [start_exercise, localize_started_readme]
     
     steps:
       - name: Checkout
@@ -55,7 +108,7 @@ jobs:
   post_next_step_content:
     name: Post next step content
     runs-on: ubuntu-latest
-    needs: [start_exercise]
+    needs: [start_exercise, localize_exercise_issue]
     env:
       ISSUE_NUMBER: ${{ needs.start_exercise.outputs.issue-number }}
       ISSUE_REPOSITORY: ${{ github.repository }}
